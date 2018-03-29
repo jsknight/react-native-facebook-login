@@ -232,6 +232,10 @@ public class FacebookLoginModule extends ReactContextBaseJavaModule implements A
     }
 
     private void login(ReadableArray permissions, String loginType, Callback callback) {
+        if (AccessToken.getCurrentAccessToken() != null) {
+            LoginManager.getInstance().logOut();
+        }
+        
         if (mTokenCallback != null) {
             AccessToken accessToken = AccessToken.getCurrentAccessToken();
 
